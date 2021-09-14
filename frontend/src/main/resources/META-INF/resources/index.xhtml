@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html   xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:sec="http://www.springframework.org/security/tags"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+>
+<!--Inspired from index.xhtml in the course repo https://github.com/arcuri82/testing_security_development_enterprise_systems-->
+<ui:composition template="/layout.xhtml">
+
+    <ui:define name="title">
+        Home page
+    </ui:define>
+
+
+    <ui:define name="content">
+
+        <h2>Discussion forum</h2>
+        <h3 id="selectItemHeaderId">Select a Item to rank or read </h3>
+
+        <div class="items">
+            <c:forEach var="item" items="#{itemController.items}">
+                <h:form  prependId="false">
+                   <h3> <h:outputLabel value="#{item.title}"/></h3>
+                    <h:outputText value="#{item.category}"/>
+                    <br/>
+                    <h:outputText value="#{item.description}"/>
+                    <br/>
+                    <h:commandButton value="Details"  class="itemBtn" action="${itemcontroller.selectItemToDetails(item.id)}"/>
+                </h:form>
+            </c:forEach>
+        </div>
+
+    </ui:define>
+
+</ui:composition>
+</html>
